@@ -102,17 +102,14 @@ public class TestBase {
 	  }
 
 	protected void openHomePage() {
-		//open home page
 	    driver.findElement(By.linkText("home")).click();
 	}
 
 	protected void submitContactCreation() {
-		//submit contact creation
 	    driver.findElement(By.name("submit")).click();
 	}
 
 	protected void fillContactForm(ContactData contact) {
-		//fill contact form
 	    driver.findElement(By.name("firstname")).clear();
 	    driver.findElement(By.name("firstname")).sendKeys(contact.firstname);
 	    driver.findElement(By.name("lastname")).clear();
@@ -141,7 +138,6 @@ public class TestBase {
 	}
 
 	protected void openNewContactPage() {
-		//open contact page
 	    driver.findElement(By.linkText("add new")).click();
 	}
 
