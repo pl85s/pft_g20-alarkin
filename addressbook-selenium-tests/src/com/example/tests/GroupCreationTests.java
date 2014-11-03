@@ -6,27 +6,27 @@ public class GroupCreationTests extends TestBase  {
   
   @Test
   public void testNonEmptyGroupCreation() throws Exception {
-	  openMainPage();
-      gotoGroupsPage();
-      initGroupCreation();
+	  app.getNavigationHelper().openMainPage();
+      app.getNavigationHelper().gotoGroupsPage();
+      app.getGroupHelper().initGroupCreation();
       GroupData group = new GroupData();
       group.name="group name 1";
       group.header="header 1";
       group.footer="footer 1";
-	fillGroupForm(group);
-      submitGroupCreation();
-      gotoGroupsPage();
-      gotoHomePage();
+	app.getGroupHelper().fillGroupForm(group);
+      app.getGroupHelper().submitGroupCreation();
+      app.getNavigationHelper().gotoGroupsPage();
+      app.getNavigationHelper().gotoHomePage();
   }
   
   @Test
   public void testEmptyGroupCreation() throws Exception {
-	  openMainPage();
-      gotoGroupsPage();
-      initGroupCreation();
-      fillGroupForm(new GroupData("", "", ""));
-      submitGroupCreation();
-      gotoGroupsPage();
-      gotoHomePage();
+	  app.getNavigationHelper().openMainPage();
+      app.getNavigationHelper().gotoGroupsPage();
+      app.getGroupHelper().initGroupCreation();
+      app.getGroupHelper().fillGroupForm(new GroupData("", "", ""));
+      app.getGroupHelper().submitGroupCreation();
+      app.getNavigationHelper().gotoGroupsPage();
+      app.getNavigationHelper().gotoHomePage();
   }
 }
