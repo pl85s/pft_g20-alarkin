@@ -38,4 +38,6 @@ public class ContactData {
 		this.addresssecondary = addresssecondary;
 		this.homesecondarytel = homesecondarytel;
 	}
+	
+	
 }
