@@ -18,6 +18,7 @@ public class ContactData {
 
 	public ContactData() {
 	}
+
 	public ContactData(String firstname, String lastname, String address,
 			String hometel, String mobiletel, String worktel, String email1,
 			String email2, String daybirthday, String monthbirthday,
@@ -38,6 +39,5 @@ public class ContactData {
 		this.addresssecondary = addresssecondary;
 		this.homesecondarytel = homesecondarytel;
 	}
-	
-	
+
 }
