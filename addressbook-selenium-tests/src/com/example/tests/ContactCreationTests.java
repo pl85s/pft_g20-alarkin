@@ -1,5 +1,10 @@
 package com.example.tests;
 
+import static org.testng.Assert.assertEquals;
+
+import java.util.Collections;
+import java.util.List;
+
 import org.testng.annotations.Test;
 
 public class ContactCreationTests extends TestBase {
@@ -7,10 +12,12 @@ public class ContactCreationTests extends TestBase {
 	@Test
 	public void testNonEmptyContactCreation() throws Exception {
 		app.getNavigationHelper().openMainPage();
+		// save old state
+		List<ContactData> oldList = app.getContactHelper().getContacts();
 		app.getNavigationHelper().openNewContactPage();
 		ContactData contact = new ContactData();
-		contact.firstname = "First Name 1";
-		contact.lastname = "Last Name 1";
+		contact.firstname = "First Name 2";
+		contact.lastname = "Last Name 2";
 		contact.address = "Address11\nAddress12";
 		contact.hometel = "+7(495)777-77-77";
 		contact.mobiletel = "+79175825969";
@@ -26,11 +33,20 @@ public class ContactCreationTests extends TestBase {
 		app.getContactHelper().fillContactForm(contact);
 		app.getContactHelper().submitContactCreation();
 		app.getNavigationHelper().openHomePage();
+		// save new state
+		List<ContactData> newList = app.getContactHelper().getContacts();
+		// compare states		
+		oldList.add(contact);
+		Collections.sort(newList);
+		Collections.sort(oldList);
+		assertEquals(newList, oldList);
 	}
 
 	@Test
 	public void testEmptyContactCreation() throws Exception {
 		app.getNavigationHelper().openMainPage();
+		// save old state
+		List<ContactData> oldList = app.getContactHelper().getContacts();
 		app.getNavigationHelper().openNewContactPage();
 		ContactData contact = new ContactData();
 		contact.firstname = "";
@@ -50,5 +66,12 @@ public class ContactCreationTests extends TestBase {
 		app.getContactHelper().fillContactForm(contact);
 		app.getContactHelper().submitContactCreation();
 		app.getNavigationHelper().openHomePage();
+		// save new state
+		List<ContactData> newList = app.getContactHelper().getContacts();
+		// compare states		
+		oldList.add(contact);
+		Collections.sort(newList);
+		Collections.sort(oldList);
+		assertEquals(newList, oldList);
 	}
 }

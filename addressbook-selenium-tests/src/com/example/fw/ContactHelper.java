@@ -1,7 +1,13 @@
 package com.example.fw;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
+
 import com.example.tests.ContactData;
+import com.example.tests.GroupData;
 
 public class ContactHelper extends HelperBase {
 
@@ -58,5 +64,17 @@ public class ContactHelper extends HelperBase {
 	public void submitContactModification() {
 		click(By.xpath("//input[@value='Update']"));
 
+	}
+
+	public List<ContactData> getContacts() {
+		List<ContactData> contacts = new ArrayList<ContactData>();
+		List<WebElement> fields = driver.findElements(By.xpath("//table//tr [@class='odd' or @class='even'  ]//td[3]"));
+		for (WebElement field : fields) {
+		ContactData contact =  new ContactData();
+		String td = field.getText();
+		contact.firstname=td;	
+		contacts.add(contact);
+		}
+		return contacts;
 	}
 }
