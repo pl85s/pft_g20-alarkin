@@ -10,6 +10,10 @@ import com.example.tests.ContactData;
 import com.example.tests.GroupData;
 
 public class ContactHelper extends HelperBase {
+	
+	private String bDayXpath = "//form[@action=\"edit.php\"]/select[@name=\"bday\"]/option";
+	private String bMonthXpath = "//form[@action=\"edit.php\"]/select[@name=\"bmonth\"]/option";
+	private String groupXpath = "//form[@action=\"edit.php\"]/select[@name=\"new_group\"]/option";
 
 	public ContactHelper(ApplicationManager manager) {
 		super(manager);
@@ -77,4 +81,22 @@ public class ContactHelper extends HelperBase {
 		}
 		return contacts;
 	}
+
+		public List<String> getWebElementsTextList(int element) {
+			String xpath = "";
+			if (element==1) {
+				xpath = bDayXpath;
+			}{if (element==2){
+				xpath = bMonthXpath;}{
+				xpath = groupXpath;}
+			}
+			List<String> rArray = new ArrayList<String>();
+			List<WebElement> webElems = driver.findElements(By.xpath(xpath));
+			for (WebElement webElem : webElems) {
+				String webElemText = webElem.getText();
+				rArray.add(webElemText);
+			}
+			return rArray;
+		}
+	
 }
